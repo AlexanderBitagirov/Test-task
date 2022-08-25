@@ -1,10 +1,19 @@
 
+export interface IUser {
+    username: string,
+    password : string
+}
+
 export interface IAuthState {
-    isAuth:boolean
+    isAuth: boolean,
+    user: IUser,
+    error: string
 }
 
 export enum AuthActionsEnum {
-    SET_AUTH = "SET_AUTH"
+    SET_AUTH = "SET_AUTH",
+    SET_USER = "SET_USER",
+    SET_ERROR = "SET_ERROR"
 }
 
 
@@ -13,4 +22,16 @@ export interface ISetAuthAction {
     payload: boolean;
 }
 
-export type AuthActions = ISetAuthAction
+export interface ISetUserAction {
+    type: AuthActionsEnum.SET_USER;
+    payload: IUser;
+}
+
+export interface ISetErrorAcions {
+    type: AuthActionsEnum.SET_ERROR;
+    payload: string;
+}
+
+export type AuthActions = ISetAuthAction | ISetUserAction | ISetErrorAcions
+
+

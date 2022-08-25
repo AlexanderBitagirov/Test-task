@@ -1,9 +1,23 @@
-import { Form, Input } from "antd";
-import React, { FunctionComponent } from "react";
+import { Button, Form, Input } from "antd";
+import { FunctionComponent, useState } from "react";
+import { UseActions } from "./hooks/UseActions";
+import { useCustomSelector } from "./hooks/UseCustomSelector";
 
 const LoginForm: FunctionComponent = () => {
+  const { error } = useCustomSelector((state) => state.auth);
+
+  const [username, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+ const {login} = UseActions();  
+
+  const submit = () => {
+    login(username, password);
+  };
+
   return (
-    <Form>
+    <Form onFinish={submit}>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <Form.Item
         label="Имя пользователя"
         name="username"
@@ -14,7 +28,7 @@ const LoginForm: FunctionComponent = () => {
           },
         ]}
       >
-        <Input />
+        <Input value={username} onChange={e=> setName(e.target.value)}/>
       </Form.Item>
       <Form.Item
         label="Пароль"
@@ -26,7 +40,12 @@ const LoginForm: FunctionComponent = () => {
           },
         ]}
       >
-        <Input.Password/>
+        <Input.Password  value={password} onChange={e=> setPassword(e.target.value)}/>
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Вход
+        </Button>
       </Form.Item>
     </Form>
   );

@@ -1,16 +1,15 @@
 import { Row} from "antd"
 import { Header } from "antd/lib/layout/layout"
-import { FunctionComponent } from "react"
-import { useNavigate } from "react-router-dom"
+import { FunctionComponent, useEffect } from "react"
+import { UseActions } from "./hooks/UseActions";
 
 export const Navbar: FunctionComponent = () => {
-    const navigate = useNavigate();
+    const {logout} = UseActions();
     
-
     return (
         <Header>
             <Row justify="end">
-                    <button onClick={()=> navigate('/')}>Выйти</button>
+                    <button onClick={()=> logout()}> Выйти</button>
             </Row>
         </Header>
     )

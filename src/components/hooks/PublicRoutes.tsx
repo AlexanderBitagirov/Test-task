@@ -7,7 +7,6 @@ export const PublicRoute = ({children} : { children: JSX.Element}) => {
     
     const {isAuth} = useCustomSelector(state => state.auth);
 
-    
     if(isAuth) {
         return <Navigate to={RouteNames.CONTACTS} state={{from: location}}/>
     }
