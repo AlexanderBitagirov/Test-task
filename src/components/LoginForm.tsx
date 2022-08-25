@@ -32,7 +32,7 @@ const LoginForm: FunctionComponent = () => {
       </Form.Item>
       <Form.Item
         label="Пароль"
-        name="Password"
+        name="password"
         rules={[
           {
             required: true,

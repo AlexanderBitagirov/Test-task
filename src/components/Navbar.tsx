@@ -1,6 +1,6 @@
 import { Row} from "antd"
 import { Header } from "antd/lib/layout/layout"
-import { FunctionComponent, useEffect } from "react"
+import { FunctionComponent } from "react"
 import { UseActions } from "./hooks/UseActions";
 
 export const Navbar: FunctionComponent = () => {

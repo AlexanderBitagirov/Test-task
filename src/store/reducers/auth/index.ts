@@ -6,8 +6,6 @@ const initialState: IAuthState = {
     error: ''
 }
 
-
-
 export default function authReducer(state = initialState, action: AuthActions):IAuthState {
     switch(action.type) {
         case AuthActionsEnum.SET_AUTH:

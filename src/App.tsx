@@ -9,6 +9,7 @@ import { IUser } from "./store/reducers/auth/types";
 
 function App() {
   const {setUser, setAuth} = UseActions(); 
+  
   useEffect(() => {
     if(localStorage.getItem("auth")) {
       setUser({username: localStorage.getItem("username" || "")} as IUser)

@@ -1,7 +1,9 @@
 import auth from './auth'
+import contacts from './contacts'
 
 const reducers = {
-    auth
+    auth,
+    contacts
 }
 
 export default reducers
