@@ -3,62 +3,66 @@ import React, { FunctionComponent, useState } from "react";
 import { UseActions } from "./hooks/UseActions";
 import { useCustomSelector } from "./hooks/UseCustomSelector";
 
-const PopUp: FunctionComponent = () => {
+const PopUpEdit: FunctionComponent = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const { contacts } = useCustomSelector((store) => store.contacts);
   const [firstname, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [patronymic, setPatronymic] = useState("");
-  const { setContact, editStatus } = UseActions();
+  const {editStatus, updateContact, sentCurrentContact} = UseActions();
+  const { data } = useCustomSelector((store) => store.current);
+  
+  const update = () => {
+    const contact = {
+        id: data.id,
+        firstName: firstname,
+        lastName: lastName,
+        patronymic: patronymic,
+      }
+    
+      updateContact(contact);
 
-  const add = () => {
-    const id = contacts.length;
+      sentCurrentContact(contact)
+      setIsModalVisible(false);
 
-    setContact({
-      id: id,
-      firstName: firstname,
-      lastName: lastName,
-      patronymic: patronymic,
-    });
-    setIsModalVisible(false);
-  };
+  }
+
   const showModal = () => {
-    editStatus(true);
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
+    editStatus(false);
     setIsModalVisible(false);
   };
 
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Добавить
+        Редактировать
       </Button>
       <Modal
         title="Добавить контакт"
         visible={isModalVisible}
-        onOk={add}
+        onOk={update}
         onCancel={handleCancel}
       >
         <Form>
           <Form.Item label="Имя">
             <Input
-              value={firstname}
+              value={data.firstName}
               onChange={(e) => setFirstname(e.target.value)}
             />
           </Form.Item>
           <Form.Item label="Фамилия">
             <Input
-              value={lastName}
+              value={data.lastName}
               onChange={(e) => setLastname(e.target.value)}
             />
           </Form.Item>
           <Form.Item label="Отчество">
             <Input
-              value={patronymic}
+              value={data.patronymic}
               onChange={(e) => setPatronymic(e.target.value)}
             />
           </Form.Item>
@@ -68,4 +72,4 @@ const PopUp: FunctionComponent = () => {
   );
 };
 
-export default PopUp;
+export default PopUpEdit;

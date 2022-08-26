@@ -12,7 +12,9 @@ const initialState: IContactState = {
         firstName: "Admin",
         lastName: "Admin",
         patronymic: "Admin",
-    }]
+    }],
+
+    isEdit: false
 }
 
 
@@ -24,8 +26,11 @@ export default function ContactReducer(state = initialState, action: ContactActi
             let newContactList = state.contacts.filter((el)=> el.id !== action.payload)
             return {...state, contacts: newContactList}
         case ContactActionsEnum.UPDATE_CONTACT:
-             return {...state, contacts: action.payload}
-        default:
+             const updateContacts = state.contacts.map(el => el.id === action.payload.id ? el = action.payload : el)   
+             return {...state, contacts: updateContacts, isEdit: false}
+        case ContactActionsEnum.EDIT_CONTACT:
+            return {...state, isEdit: action.payload}
+             default:
             return state
     }
 }                   

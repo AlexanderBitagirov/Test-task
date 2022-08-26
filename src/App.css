@@ -5,3 +5,24 @@
 .list {
     height: 100vh;
 }
+
+.add {
+    margin: 40px;
+}
+
+.delete {
+    margin-left: 10px;
+}
+
+.contacts {
+    width: 100vw ;
+    margin-top: 10px;
+}
+
+.nav {
+    height: 60px;
+}
+
+.search {
+    width: 100vw ;
+}

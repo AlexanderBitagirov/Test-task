@@ -8,13 +8,15 @@ export interface IContact {
 
 export interface IContactState {
     contacts: IContact[],
-    isUpdate?: boolean
+    isEdit: boolean
 }
+
 
 export enum ContactActionsEnum {
     SET_CONTACT = "SET_CONTACT",
     DELETE_CONTACT = "DELETE_CONTACT",
-    UPDATE_CONTACT = "UPDATE_CONTACT"
+    UPDATE_CONTACT = "UPDATE_CONTACT",
+    EDIT_CONTACT = "EDIT_CONTACT"
 }
 
 
@@ -28,9 +30,14 @@ export interface IDeleteContactAction {
     payload: number;
 }
 
-export interface IUpdateContactAcions {
+export interface IUpdateContactAcion {
     type: ContactActionsEnum.UPDATE_CONTACT;
-    payload: IContact[];
+    payload: IContact;
 }
 
-export type ContactActions = ISetContactAction | IDeleteContactAction | IUpdateContactAcions
+export interface IEditContactAction {
+    type: ContactActionsEnum.EDIT_CONTACT
+    payload: boolean
+}
+
+export type ContactActions = ISetContactAction | IDeleteContactAction | IUpdateContactAcion | IEditContactAction

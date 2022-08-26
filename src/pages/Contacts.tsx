@@ -17,7 +17,7 @@ const Contacts: FunctionComponent = () => {
           <List/>
         </Col>
         <Col span={19}>
-          <Row justify="end" align="middle">
+          <Row justify="end" align="middle" className="add">
             <PopUp/>
           </Row>
           <Col span={24}>
