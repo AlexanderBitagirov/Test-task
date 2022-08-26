@@ -10,7 +10,6 @@ const PopUp: FunctionComponent = () => {
   const [firstname, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [patronymic, setPatronymic] = useState("");
-  console.log(contacts);
   const { setContact } = UseActions();
 
   const add = () => {
@@ -22,14 +21,12 @@ const PopUp: FunctionComponent = () => {
       lastName: lastName,
       patronymic: patronymic,
     });
+    setIsModalVisible(false)
   };
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
 
   const handleCancel = () => {
     setIsModalVisible(false);

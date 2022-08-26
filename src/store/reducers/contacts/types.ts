@@ -7,7 +7,8 @@ export interface IContact {
 
 
 export interface IContactState {
-    contacts: IContact[]
+    contacts: IContact[],
+    isUpdate?: boolean
 }
 
 export enum ContactActionsEnum {
